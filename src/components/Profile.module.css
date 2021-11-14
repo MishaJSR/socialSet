@@ -1,0 +1,10 @@
+.content{
+    grid-area:c;
+    background-color: purple;
+  }
+  .item{
+    color: #fff;
+    font-size: 26px;
+    margin-top: 15px;
+    text-align: center;
+  }
