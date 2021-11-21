@@ -9,3 +9,11 @@
     margin-top: 15px;
     text-align: center;
   }
+
+  .active {
+    color:gold;
+  }
+
+  a{
+    text-decoration: none;
+  }
