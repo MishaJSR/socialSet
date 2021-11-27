@@ -1,27 +1,8 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
-
-const DialogItem = (props) => {
-    return (<NavLink to={"/dialogs/" + props.id} className={navData => navData.isActive ? classes.active : classes.dialogs_items}>{props.name}</NavLink>)
-}
-
-const MessageTtem = (props) => {
-    return (<div className={classes.message}>{props.message}</div>)
-}
-
-let dialogsElements = () => {
-    return (
-        <div>
-            <DialogItem name={dialogsData[0].name} id={dialogsData[0].id} />
-            <DialogItem name="Vasya" id="2" />
-            <DialogItem name="Petya" id="3" />
-            <DialogItem name="Victor" id="4" />
-            <DialogItem name="Valera" id="5" />
-        </div>
-    )
-}
-
+import DialogItem from './DialogItem/DialogItem'
+import MessageItem from './Message/MessageItem'
 
 let dialogsData = [
     { id: 1, name: "Andrey" },
@@ -32,24 +13,29 @@ let dialogsData = [
 ]
 
 let messageData = [
-    { id: 1, content: "Hi" },
-    { id: 2, content: "Yo" },
-    { id: 3, content: "Wifi" },
-    { id: 4, content: "YEEA" },
+    { id: 1, content: ["Hi", "Eraa"] },
+    { id: 2, content:  ["Wow", "Riif"] },
+    { id: 3, content: ["Feeaf", "Iriska"]  },
+    { id: 4, content: ["Meean", "Rest"] },
 ]
 
+let nameId = 3;
+
+let dialogsElements =  dialogsData.map (dElement => <DialogItem name={dElement.name} id={dElement.id} />);
+
+let messageElements = messageData.map (mElement => <MessageItem message={mElement.content} />)
+
+let messageUser = (nameId) => (<MessageItem message={messageData[nameId].content}/>);
 
 const Dialogs = (props) => {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
-                {dialogsElements()}
+                {dialogsElements}
             </div>
             <div className={classes.messages}>
-                <MessageTtem message={messageData[0].content} />
-                <MessageTtem message={messageData[1].content} />
-                <MessageTtem message={messageData[3].content} />
-
+                {/* {messageUser (nameId)} */}
+                {messageElements}
             </div>
         </div>
     );

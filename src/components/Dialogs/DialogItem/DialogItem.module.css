@@ -1,0 +1,12 @@
+
+
+.dialogs_items{
+    padding: 10px;
+    color: white;
+    font-size: 25px;
+
+}
+
+.active{
+    color: gold;
+}
