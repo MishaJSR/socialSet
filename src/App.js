@@ -15,8 +15,8 @@ function App() {
 
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path="frofile" element={<Profile />} />
-            <Route path="dialogs" element={<Dialogs />} />
+            <Route path="frofile/*" element={<Profile />} />
+            <Route path="dialogs/*" element={<Dialogs />} />
           </Routes>
         </div>
 
