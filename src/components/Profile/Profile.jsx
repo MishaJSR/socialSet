@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div>
         <div>
@@ -12,7 +12,7 @@ const Profile = () => {
         ava+descr
           <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT526WS19R_mmRsVD9r_ZSaUJQ7KCCvBGkthQ&usqp=CAU'></img>
         </div>
-        <MyPosts />
+        <MyPosts postData = {props.postData}/>
       </div>
     );
 }
