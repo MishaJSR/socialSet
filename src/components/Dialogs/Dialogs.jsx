@@ -14,7 +14,9 @@ let dialogsElements = (dataD) =>  dataD.map (dElement => <DialogItem name={dElem
 
 let messageElements = (dataM) => dataM.map (mElement => <MessageItem message={mElement.content} />)
 
-// let messageUser = (nameId) => (<MessageItem message={messageData[nameId].content}/>);
+// let messageUser = (dataM ,Id) => (<MessageItem message={dataM[nameId].content}/>);
+// let isActiveBut;
+// let dialogsElements = (dataD, isActiveBut) =>  dataD.map (dElement => <DialogItem active={isActiveBut} name={dElement.name} id={dElement.id} />);
 
 const Dialogs = (props) => {
     return (
@@ -23,7 +25,7 @@ const Dialogs = (props) => {
                 {dialogsElements(props.dialogData)}
             </div>
             <div className={classes.messages}>
-                {/* {messageUser (nameId)} */}
+                {/* {messageUser (props.messageData, nameId)} */}
                 {messageElements(props.messageData)}
             </div>
         </div>
