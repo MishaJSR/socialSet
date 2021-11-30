@@ -19,6 +19,14 @@ let messageElements = (dataM) => dataM.map (mElement => <MessageItem message={mE
 // let dialogsElements = (dataD, isActiveBut) =>  dataD.map (dElement => <DialogItem active={isActiveBut} name={dElement.name} id={dElement.id} />);
 
 const Dialogs = (props) => {
+
+    let textAreaText = React.createRef();
+
+    let addMessage = () => {
+        let textMessage = textAreaText.current.value;
+        alert(textMessage);
+    }
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
@@ -27,7 +35,10 @@ const Dialogs = (props) => {
             <div className={classes.messages}>
                 {/* {messageUser (props.messageData, nameId)} */}
                 {messageElements(props.messageData)}
+                <textarea name="" ref={textAreaText} cols="30" rows="10"></textarea>
+                <button onClick={addMessage}>Написать</button>
             </div>
+            
         </div>
     );
 }
