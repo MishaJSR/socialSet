@@ -12,7 +12,7 @@ const Profile = (props) => {
         ava+descr
           <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT526WS19R_mmRsVD9r_ZSaUJQ7KCCvBGkthQ&usqp=CAU'></img>
         </div>
-        <MyPosts postData = {props.postData}/>
+        <MyPosts postData = {props.statePostData.postData} addPost={props.addPost} newPostText={props.statePostData.newPostText} postTextAreaChange={props.postTextAreaChange}/>
       </div>
     );
 }

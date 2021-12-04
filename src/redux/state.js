@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { findAllInRenderedTree } from 'react-dom/test-utils';
+import { renderTree } from '..';
+
 
 let state = {
   profilePage: {
     postData: [
       { id: 1, content: "How are you?", likes_count: 12 },
-      { id: 2, content: "Its my new post", likes_count: 92 },
+      { id: 2, content: "Good Day", likes_count: 92 },
       { id: 3, content: "I am Andy", likes_count: 422 },
       { id: 4, content: "I am Peter", likes_count: 162 }
-    ]
+    ],
+    newPostText: 'Hello, User'
   },
 
   dialogPage: {
@@ -29,5 +33,31 @@ let state = {
   }
 
 }
+
+let rerends = () => {
+
+}
+
+export const subscribe = (observer) =>{
+  rerends = observer;
+}
+
+export let addPost = () => {
+  let NewPost = {
+    id: 5,
+    content: state.profilePage.newPostText,
+    likes_count: 0
+  }
+  state.profilePage.postData.push(NewPost);
+  state.profilePage.newPostText = "";
+  rerends(state);
+}
+
+export let postTextAreaChange = (text) => {
+  state.profilePage.newPostText = text;
+  rerends(state);
+}
+
+
 
 export default state;

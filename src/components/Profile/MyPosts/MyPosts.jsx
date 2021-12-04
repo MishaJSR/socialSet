@@ -13,8 +13,12 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        let text = newPostElement.current.value;
-        alert (text);
+        props.addPost();
+    }
+
+    let onPostChange = () =>{
+        let textOnChange = newPostElement.current.value;
+        props.postTextAreaChange (textOnChange);
     }
 
 
@@ -22,7 +26,8 @@ const MyPosts = (props) => {
         <div>
             My Posts
             <div>
-            <textarea name="" ref={newPostElement} cols="30" rows="10"></textarea>
+            <textarea name="" ref={newPostElement}  value={props.newPostText} onChange={onPostChange}></textarea>
+            
             <button onClick={addPost}>Clicker</button>
             </div>
             
@@ -33,6 +38,7 @@ const MyPosts = (props) => {
             
         </div>
     );
+    {debugger};
 }
 
 export default MyPosts;
