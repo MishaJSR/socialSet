@@ -16,8 +16,8 @@ function App (props) {
 
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path="frofile/*" element={<Profile statePostData = {props.statePostData} addPost={props.addPost} postTextAreaChange={props.postTextAreaChange}/>} />
-            <Route path="dialogs/*" element={<Dialogs dialogData = {props.stateDialogData.dialogData} messageData = {props.stateDialogData.messageData}/>} />
+            <Route path="frofile/*" element={<Profile state = {props.state} dispatch={props.dispatch}/>} />
+            <Route path="dialogs/*" element={<Dialogs state = {props.state} />} />
           </Routes>
         </div>
 

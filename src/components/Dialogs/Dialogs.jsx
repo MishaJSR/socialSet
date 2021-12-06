@@ -30,11 +30,11 @@ const Dialogs = (props) => {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
-                {dialogsElements(props.dialogData)}
+                {dialogsElements(props.state.dialogPage.dialogData)}
             </div>
             <div className={classes.messages}>
                 {/* {messageUser (props.messageData, nameId)} */}
-                {messageElements(props.messageData)}
+                {messageElements(props.state.dialogPage.messageData)}
                 <textarea name="" ref={textAreaText} cols="30" rows="10"></textarea>
                 <button onClick={addMessage}>Написать</button>
             </div>

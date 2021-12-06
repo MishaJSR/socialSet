@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, { addPost, postTextAreaChange, subscribe } from './redux/state';
+import store, { subscribe } from './redux/state';
 import App from './App';
 
-export let renderTree = (props) => {
+export let renderTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-          <App  statePostData = {props.profilePage} stateDialogData = {props.dialogPage} stateMessageData = {props.dialogPage} addPost={addPost} postTextAreaChange={postTextAreaChange}/>
+          <App  state = {state} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
       );
 } 
 
-renderTree (state);
+renderTree (store.getState());
 subscribe (renderTree);
 
 
