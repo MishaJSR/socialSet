@@ -23,8 +23,13 @@ const Dialogs = (props) => {
     let textAreaText = React.createRef();
 
     let addMessage = () => {
+        props.dispatch(props.sendMessage());
+        textAreaText.current.value ='';
+    }
+
+    let onTextChange = () => {
         let textMessage = textAreaText.current.value;
-        alert(textMessage);
+        props.dispatch(props.updateNewMessage(textMessage));
     }
 
     return (
@@ -35,7 +40,7 @@ const Dialogs = (props) => {
             <div className={classes.messages}>
                 {/* {messageUser (props.messageData, nameId)} */}
                 {messageElements(props.state.dialogPage.messageData)}
-                <textarea name="" ref={textAreaText} cols="30" rows="10"></textarea>
+                <textarea name="" ref={textAreaText} onChange={onTextChange} cols="30" rows="10"></textarea>
                 <button onClick={addMessage}>Написать</button>
             </div>
             

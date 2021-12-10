@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import { findAllInRenderedTree } from 'react-dom/test-utils';
 
 
+const ADD_POST = 'ADD-POST';
+const AREA_CHANGE = 'AREA-CHANGE';
+const GET_NEW_POST_TEXT = 'GET-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const SEND_MESSSAGE = 'SEND_MESSSAGE';
+
+
 let store = {
   _state: {
     profilePage: {
@@ -29,19 +36,35 @@ let store = {
         { id: 2, content: ["Wow", "Riif"] },
         { id: 3, content: ["Feeaf", "Iriska"] },
         { id: 4, content: ["Meean", "Rest"] },
-      ]
+      ],
+      newMessageText: ''
     }
+
+
   },
 
   getState() {
     return this._state;
   },
 
+  addPostAction() {
+    return { type: ADD_POST };
+  },
 
+  onPostChangeAction(text) {
+    return { type: AREA_CHANGE, text: text };
+  },
 
+  sendMessage() {
+    return { type: SEND_MESSSAGE };
+  },
+
+  updateNewMessage(newText) {
+    return { type: UPDATE_NEW_MESSAGE_TEXT , text: newText };
+  },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
       let NewPost = {
         id: 5,
         content: this._state.profilePage.newPostText,
@@ -50,11 +73,22 @@ let store = {
       this._state.profilePage.postData.push(NewPost);
       this._state.profilePage.newPostText = "";
       rerends(this._state);
-    } else if (action.type === 'AREA-CHANGE') {
+    } else if (action.type === AREA_CHANGE) {
       this._state.profilePage.newPostText = action.text;
       rerends(this._state);
-    } else if (action.type === 'GET-NEW-POST-TEXT'){
+    } else if (action.type === GET_NEW_POST_TEXT) {
       return this._state.profilePage.newPostText;
+    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+      this._state.dialogPage.newMessageText = action.text;
+      rerends(this._state);
+    } else if (action.type === SEND_MESSSAGE) {
+      let body = {
+        id: 5,
+        content: this._state.dialogPage.newMessageText
+      }
+      this._state.dialogPage.newMessageText = '';
+      this._state.dialogPage.messageData.push(body);
+      rerends(this._state);
     }
   }
 

@@ -14,12 +14,12 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch({ type:'ADD-POST'});
+        props.dispatch(props.addPostAction());
     }
 
     let onPostChange = () =>{
         let textOnChange = newPostElement.current.value;
-        props.dispatch({ type:'AREA-CHANGE', text: textOnChange});
+        props.dispatch(props.onPostChangeAction(textOnChange));
     }
 
 
