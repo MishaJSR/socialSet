@@ -1,0 +1,27 @@
+const ADD_POST = 'ADD-POST';
+const AREA_CHANGE = 'AREA-CHANGE';
+const GET_NEW_POST_TEXT = 'GET-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const SEND_MESSSAGE = 'SEND_MESSSAGE';
+
+
+
+
+const reduserDialog = (state, action) => {
+
+    if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+        state.newMessageText = action.text;
+        return state;
+      } 
+      else if (action.type === SEND_MESSSAGE) {
+        let body = {
+          id: 5,
+          content:  state.newMessageText
+        }
+        state.newMessageText = '';
+        state.messageData.push(body);
+        return state;
+      }
+}
+
+export default reduserDialog;

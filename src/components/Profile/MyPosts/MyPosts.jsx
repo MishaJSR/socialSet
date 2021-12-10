@@ -7,7 +7,7 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
     
-
+debugger;
     let postElements = 
     props.state.profilePage.postData.map (pElement => <Post message={pElement.content} likes_count={pElement.likes_count} />)
 
@@ -27,7 +27,7 @@ const MyPosts = (props) => {
         <div>
             My Posts
             <div>
-            <textarea name="" ref={newPostElement}  value={props.dispatch({ type:'GET-NEW-POST-TEXT'})} onChange={onPostChange}></textarea>
+            <textarea name="" ref={newPostElement}  value={props.getNewPostText()} onChange={onPostChange}></textarea>
             
             <button onClick={addPost}>Clicker</button>
             </div>

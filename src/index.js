@@ -8,7 +8,7 @@ import App from './App';
 export let renderTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-          <App  state = {state} dispatch={store.dispatch.bind(store)} addPostAction={store.addPostAction.bind(store)} onPostChangeAction={store.onPostChangeAction.bind(store)} updateNewMessage={store.updateNewMessage.bind(store)} sendMessage={store.sendMessage.bind(store)}/>
+          <App  state = {state} dispatch={store.dispatch.bind(store)} addPostAction={store.addPostAction.bind(store)} onPostChangeAction={store.onPostChangeAction.bind(store)} getNewPostText={store.getNewPostText.bind(store)} updateNewMessage={store.updateNewMessage.bind(store)} sendMessage={store.sendMessage.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
       );

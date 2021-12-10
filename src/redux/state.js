@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { findAllInRenderedTree } from 'react-dom/test-utils';
-
+import reduserDialog from './reduserDialog';
+import reduserProfile from './reduserProfile';
 
 const ADD_POST = 'ADD-POST';
 const AREA_CHANGE = 'AREA-CHANGE';
 const GET_NEW_POST_TEXT = 'GET-NEW-POST-TEXT';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const SEND_MESSSAGE = 'SEND_MESSSAGE';
-
 
 let store = {
   _state: {
@@ -47,6 +47,11 @@ let store = {
     return this._state;
   },
 
+  getNewPostText() {
+    return this._state.profilePage.newPostText;
+  },
+    
+  
   addPostAction() {
     return { type: ADD_POST };
   },
@@ -64,32 +69,8 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      let NewPost = {
-        id: 5,
-        content: this._state.profilePage.newPostText,
-        likes_count: 0
-      }
-      this._state.profilePage.postData.push(NewPost);
-      this._state.profilePage.newPostText = "";
-      rerends(this._state);
-    } else if (action.type === AREA_CHANGE) {
-      this._state.profilePage.newPostText = action.text;
-      rerends(this._state);
-    } else if (action.type === GET_NEW_POST_TEXT) {
-      return this._state.profilePage.newPostText;
-    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogPage.newMessageText = action.text;
-      rerends(this._state);
-    } else if (action.type === SEND_MESSSAGE) {
-      let body = {
-        id: 5,
-        content: this._state.dialogPage.newMessageText
-      }
-      this._state.dialogPage.newMessageText = '';
-      this._state.dialogPage.messageData.push(body);
-      rerends(this._state);
-    }
+    this._state = reduserProfile (this._state, action);
+    rerends (this._state);
   }
 
 
