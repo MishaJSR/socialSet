@@ -33,7 +33,17 @@ const reduserDialog = (state = initialState, action) => {
         state.newMessageText = '';
         state.messageData.push(body);
         return state;
-      }
+      } else return state;
+}
+
+
+export let sendMessage = () => {
+  return { type: SEND_MESSSAGE };
+}
+
+
+export let updateNewMessage = (newText) => {
+  return { type: UPDATE_NEW_MESSAGE_TEXT, text: newText };
 }
 
 export default reduserDialog;

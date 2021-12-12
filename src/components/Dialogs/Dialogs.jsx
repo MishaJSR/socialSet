@@ -3,8 +3,7 @@ import classes from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './Message/MessageItem'
-import { sendMessage, updateNewMessage } from '../../redux/state';
-
+import { sendMessage, updateNewMessage } from '../../redux/reduserDialog';
 
 
 // let nameId = 3;
@@ -39,12 +38,14 @@ const Dialogs = (props) => {
             <div className={classes.messages}>
                 {/* {messageUser (props.messageData, nameId)} */}
                 {messageElements(props.state.dialogPage.messageData)}
+                
                 <textarea name="" ref={textAreaText} onChange={onTextChange} cols="30" rows="10"></textarea>
                 <button onClick={addMessage}>Написать</button>
             </div>
             
         </div>
     );
+    debugger;
 }
 
 export default Dialogs;

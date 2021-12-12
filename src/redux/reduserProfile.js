@@ -1,6 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const AREA_CHANGE = 'AREA-CHANGE';
 
+
+// let initialState = {}
 let initialState = {
   postData: [
     { id: 1, content: "How are you?", likes_count: 12 },
@@ -26,6 +28,15 @@ const reduserProfile = (state = initialState, action) => {
         state.newPostText = action.text;
         return state;
       } 
+      else return state;
+}
+
+export let addPostAction = () => {
+  return { type: ADD_POST };
+}
+
+export let onPostChangeAction = (text) => {
+  return { type: AREA_CHANGE, text: text };
 }
 
 export default reduserProfile;

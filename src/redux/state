@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { findAllInRenderedTree } from 'react-dom/test-utils';
 import reduserDialog from './reduserDialog';
 import reduserProfile from './reduserProfile';
+import reduserSidebar from './reduserSidebar';
 
 const ADD_POST = 'ADD-POST';
 const AREA_CHANGE = 'AREA-CHANGE';
-const GET_NEW_POST_TEXT = 'GET-NEW-POST-TEXT';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const SEND_MESSSAGE = 'SEND_MESSSAGE';
 
@@ -38,6 +38,10 @@ let store = {
         { id: 4, content: ["Meean", "Rest"] },
       ],
       newMessageText: ''
+    },
+    
+    sidebar: {
+
     }
 
 
@@ -55,35 +59,16 @@ let store = {
 
   },
 
-  dispatchP(action) {
+  dispatch(action) {
     this._state.profilePage = reduserProfile(this._state.profilePage, action);
-    this.callSubscribers(this._state);
-  },
-
-  dispatchD(action) {
     this._state.dialogPage = reduserDialog(this._state.dialogPage, action);
+    this._state.sidebar = reduserSidebar(this._state.sidebar, action);
     this.callSubscribers(this._state);
   }
 
 }
 
 
-export let addPostAction = () => {
-  return { type: ADD_POST };
-}
-
-export let onPostChangeAction = (text) => {
-  return { type: AREA_CHANGE, text: text };
-}
-
-export let sendMessage = () => {
-  return { type: SEND_MESSSAGE };
-}
-
-
-export let updateNewMessage = (newText) => {
-  return { type: UPDATE_NEW_MESSAGE_TEXT, text: newText };
-}
 
 
 // let rerends = () => {
