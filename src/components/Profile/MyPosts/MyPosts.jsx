@@ -1,8 +1,7 @@
 import React from 'react';
+import { addPostAction, onPostChangeAction } from '../../../redux/state';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-
-
 
 
 const MyPosts = (props) => {
@@ -14,12 +13,12 @@ debugger;
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch(props.addPostAction());
+        props.dispatch(addPostAction());
     }
 
     let onPostChange = () =>{
         let textOnChange = newPostElement.current.value;
-        props.dispatch(props.onPostChangeAction(textOnChange));
+        props.dispatch(onPostChangeAction(textOnChange));
     }
 
 
@@ -27,7 +26,7 @@ debugger;
         <div>
             My Posts
             <div>
-            <textarea name="" ref={newPostElement}  value={props.getNewPostText()} onChange={onPostChange}></textarea>
+            <textarea name="" ref={newPostElement}  value={props.state.profilePage.newPostText} onChange={onPostChange}></textarea>
             
             <button onClick={addPost}>Clicker</button>
             </div>

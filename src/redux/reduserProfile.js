@@ -1,40 +1,31 @@
 const ADD_POST = 'ADD-POST';
 const AREA_CHANGE = 'AREA-CHANGE';
-const GET_NEW_POST_TEXT = 'GET-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-const SEND_MESSSAGE = 'SEND_MESSSAGE';
 
+let initialState = {
+  postData: [
+    { id: 1, content: "How are you?", likes_count: 12 },
+    { id: 2, content: "Good Day", likes_count: 92 },
+    { id: 3, content: "I am Andy", likes_count: 422 },
+    { id: 4, content: "I am Peter", likes_count: 162 }
+  ],
+  newPostText: 'Hello, User'
+};
 
-
-
-const reduserProfile = (state, action) => {
+const reduserProfile = (state = initialState, action) => {
     if (action.type === ADD_POST) {
         let NewPost = {
           id: 5,
-          content: state.profilePage.newPostText,
+          content: state.newPostText,
           likes_count: 0
         }
-        state.profilePage.postData.push(NewPost);
-        state.profilePage.newPostText = "";
+        state.postData.push(NewPost);
+        state.newPostText = "";
         return state;
       } 
       else if (action.type === AREA_CHANGE) {
-        state.profilePage.newPostText = action.text;
+        state.newPostText = action.text;
         return state;
       } 
-      else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-        state.dialogPage.newMessageText = action.text;
-        return state;
-      } 
-      else if (action.type === SEND_MESSSAGE) {
-        let body = {
-          id: 5,
-          content:  state.dialogPage.newMessageText
-        }
-        state.dialogPage.newMessageText = '';
-        state.dialogPage.messageData.push(body);
-        return state;
-      }
 }
 
 export default reduserProfile;

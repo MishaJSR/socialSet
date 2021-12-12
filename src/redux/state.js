@@ -47,42 +47,50 @@ let store = {
     return this._state;
   },
 
-  getNewPostText() {
-    return this._state.profilePage.newPostText;
-  },
-    
-  
-  addPostAction() {
-    return { type: ADD_POST };
+  subscribe(observer) {
+    this.callSubscribers = observer;
   },
 
-  onPostChangeAction(text) {
-    return { type: AREA_CHANGE, text: text };
-  },
+  callSubscribers() {
 
-  sendMessage() {
-    return { type: SEND_MESSSAGE };
-  },
-
-  updateNewMessage(newText) {
-    return { type: UPDATE_NEW_MESSAGE_TEXT , text: newText };
   },
 
   dispatch(action) {
-    this._state = reduserProfile (this._state, action);
-    rerends (this._state);
+    this._state.profilePage = reduserProfile(this._state.profilePage, action);
+    this._state.dialogPage = reduserDialog(this._state.dialogPage, action);
+    debugger;
+    this.callSubscribers(this._state);
   }
 
 
 }
 
-let rerends = () => {
 
+export let addPostAction = () => {
+  return { type: ADD_POST };
 }
 
-export const subscribe = (observer) => {
-  rerends = observer;
+export let onPostChangeAction = (text) => {
+  return { type: AREA_CHANGE, text: text };
 }
+
+export let sendMessage = () => {
+  return { type: SEND_MESSSAGE };
+}
+
+
+export let updateNewMessage = (newText) => {
+  return { type: UPDATE_NEW_MESSAGE_TEXT, text: newText };
+}
+
+
+// let rerends = () => {
+
+// }
+
+// export const subscribe = (observer) => {
+//   rerends = observer;
+// }
 
 // export let addPost = () => {
 //   let NewPost = {
