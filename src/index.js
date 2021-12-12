@@ -9,7 +9,7 @@ let renderTree = (state) => {
   debugger;
     ReactDOM.render(
         <React.StrictMode>
-          <App  state = {state} dispatch={store.dispatch.bind(store)} />
+          <App  state = {state} dispatchP={store.dispatchP.bind(store)} dispatchD={store.dispatchD.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
       );

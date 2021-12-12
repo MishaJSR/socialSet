@@ -55,13 +55,15 @@ let store = {
 
   },
 
-  dispatch(action) {
+  dispatchP(action) {
     this._state.profilePage = reduserProfile(this._state.profilePage, action);
+    this.callSubscribers(this._state);
+  },
+
+  dispatchD(action) {
     this._state.dialogPage = reduserDialog(this._state.dialogPage, action);
-    debugger;
     this.callSubscribers(this._state);
   }
-
 
 }
 
