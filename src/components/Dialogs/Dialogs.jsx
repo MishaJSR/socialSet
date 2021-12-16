@@ -3,7 +3,6 @@ import classes from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './Message/MessageItem'
-import { sendMessage, updateNewMessage } from '../../redux/reduserDialog';
 
 
 // let nameId = 3;
@@ -21,13 +20,13 @@ const Dialogs = (props) => {
     let textAreaText = React.createRef();
 
     let addMessage = () => {
-        props.dispatch(sendMessage());
+        props.sendMessage();
         textAreaText.current.value ='';
     }
 
     let onTextChange = () => {
         let textMessage = textAreaText.current.value;
-        props.dispatch(updateNewMessage(textMessage));
+        props.updateNewMessage(textMessage);
     }
 
     return (
