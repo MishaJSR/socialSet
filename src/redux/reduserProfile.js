@@ -14,21 +14,48 @@ let initialState = {
 };
 
 const reduserProfile = (state = initialState, action) => {
-    if (action.type === ADD_POST) {
-        let NewPost = {
-          id: 5,
-          content: state.newPostText,
-          likes_count: 0
-        }
-        state.postData.push(NewPost);
-        state.newPostText = "";
-        return state;
-      } 
-      else if (action.type === AREA_CHANGE) {
-        state.newPostText = action.text;
-        return state;
-      } 
-      else return state;
+
+  switch (action.type) {
+    case ADD_POST: {
+      let NewPost = {
+        id: 5,
+        content: state.newPostText,
+        likes_count: 0
+      };
+      let stateCopy = {
+        ...state,
+        postData: [...state.postData]
+      };
+      stateCopy.postData.push(NewPost);
+      stateCopy.newPostText = "";
+      return stateCopy;
+    }
+    case AREA_CHANGE: {
+      let stateCopy = {...state };
+      stateCopy.newPostText = action.text;
+      return stateCopy;
+    }
+    default:
+      return state;
+  }
+  // if (action.type === ADD_POST) {
+  //     let NewPost = {
+  //       id: 5,
+  //       content: state.newPostText,
+  //       likes_count: 0
+  //     }
+  //     let stateCopy = {...state};
+  //     stateCopy.postData = [...state]
+  //     stateCopy.postData.push(NewPost);
+  //     stateCopy.newPostText = "";
+  //     return stateCopy;
+  //   } 
+  //   else if (action.type === AREA_CHANGE) {
+  //     let stateCopy = {...state};
+  //     stateCopy.newPostText = action.text;
+  //     return stateCopy;
+  //   } 
+  //   else return state;
 }
 
 export let addPostAction = () => {

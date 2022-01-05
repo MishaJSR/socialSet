@@ -4,9 +4,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
 import App from './App';
-import StoreContext, { Provider } from './components/StoreContext';
+import { Provider } from 'react-redux';
 
-let renderTree = (state) => {
+// let renderTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
           <Provider store={store}>
@@ -15,14 +15,14 @@ let renderTree = (state) => {
         </React.StrictMode>,
         document.getElementById('root')
       );
-} 
+// } 
 
-renderTree (store.getState());
+// renderTree (store.getState());
 
-store.subscribe (() => {
-  let state = store.getState();
-  renderTree(state);
-});
+// store.subscribe (() => {
+//   let state = store.getState();
+//   renderTree(state);
+// });
 // store.subscribe (renderTree);
 
 
