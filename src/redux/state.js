@@ -42,7 +42,14 @@ let store = {
     
     sidebar: {
 
-    }
+    },
+    usersPage: [
+      { id: 1, name: "Andrey" },
+      { id: 2, name: "Vasya" },
+      { id: 3, name: "Petya" },
+      { id: 4, name: "Victor" },
+      { id: 5, name: "Valera" }
+    ]
 
 
   },

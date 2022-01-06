@@ -20,8 +20,7 @@ const MyPosts = (props) => {
         props.onPostChange(textOnChange);
         // props.dispatch(onPostChangeAction(textOnChange));
     }
-
-
+    debugger;
     return (
         <div>
             My Posts

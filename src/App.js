@@ -3,10 +3,10 @@ import './App.css';
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
-import Dialogs from './components/Dialogs/Dialogs'
+// import Dialogs from './components/Dialogs/Dialogs'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import Users from './components/Users/Users';
+import MyUsersContainer from './components/Users/Users_container';
 
 
 function App (props) {
@@ -20,7 +20,7 @@ function App (props) {
           <Routes>
             <Route path="frofile/*" element={<Profile />} />
             <Route path="dialogs/*" element={<DialogsContainer/>} />
-            <Route path="users/*" element={<Users/>} />
+            <Route path="users/*" element={<MyUsersContainer/>} />
           </Routes>
         </div>
 
