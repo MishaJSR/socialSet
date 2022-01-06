@@ -17,23 +17,18 @@ const reduserProfile = (state = initialState, action) => {
 
   switch (action.type) {
     case ADD_POST: {
-      let NewPost = {
-        id: 5,
-        content: state.newPostText,
-        likes_count: 0
-      };
-      let stateCopy = {
+      let NewPost = state.newPostText;
+      return {
         ...state,
-        postData: [...state.postData]
+        newPostText: '',
+        postData: [...state.postData, {id: 5, content: NewPost, likes_count: 2}]
       };
-      stateCopy.postData.push(NewPost);
-      stateCopy.newPostText = "";
-      return stateCopy;
     }
     case AREA_CHANGE: {
-      let stateCopy = {...state };
-      stateCopy.newPostText = action.text;
-      return stateCopy;
+      return {
+        ...state,
+        newPostText: action.text
+      };
     }
     default:
       return state;

@@ -22,22 +22,18 @@ let initialState = {
 
 const reduserDialog = (state = initialState, action) => {
   if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-    let stateCopy = { ...state };
-    stateCopy.newMessageText = action.text;
-    return stateCopy;
+    return {
+       ...state,
+       newMessageText: action.text
+      };
   }
   else if (action.type === SEND_MESSSAGE) {
-    let stateCopy = {
+    let body = state.newMessageText;
+    return {
       ...state,
-      messageData: [...state.messageData]
+      newMessageText: '',
+      messageData: [...state.messageData, {id: 6, content: body}]
     };
-    let body = {
-      id: 5,
-      content: state.newMessageText
-    }
-    stateCopy.newMessageText = '';
-    stateCopy.messageData.push(body);
-    return stateCopy;
   } 
   else return state;
 }
