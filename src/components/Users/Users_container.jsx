@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { onShowUsersAction } from '../../redux/reduserUsers';
+import { onFollowAction, onShowUsersAction, unFollowAction } from '../../redux/reduserUsers';
 import Users from './Users';
 
 // const MyPostsContainer = () => {
@@ -27,6 +27,7 @@ import Users from './Users';
 //     );
 // }
 
+
 let mapStateToProps = (state) => {
     return {
         stateU: state.usersPage
@@ -36,6 +37,12 @@ let mapDispatchToProps = (dispatch) => {
     return {
         onShowUsers: () => {
             dispatch(onShowUsersAction());
+        },
+        onFollow: (id) => {
+            dispatch(onFollowAction(id));
+        },
+        unFollow: (id) => {
+            dispatch(unFollowAction(id));
         }
     }
 }

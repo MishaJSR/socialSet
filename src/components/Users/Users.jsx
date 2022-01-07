@@ -10,7 +10,7 @@ const Users = (props) => {
   let showU = () => {
     props.onShowUsers();
     usersElements =
-      props.stateU.usersPage.map(uElement => <UsersItem name={uElement.name} id={uElement.id} />)
+      props.stateU.usersPage.map(uElement => <UsersItem onFollow={props.onFollow} unFollow={props.unFollow} name={uElement.name} id={uElement.id} uFriend={uElement.friend} uStatus={uElement.status} uCity={uElement.location.city} uCountry={uElement.location.country} img_source={uElement.src} />)
   }
 
   return (
