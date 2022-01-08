@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { onFollowAction, onShowUsersAction, unFollowAction } from '../../redux/reduserUsers';
+import { onFollowAction, onShowUsersAction, setUsersAction, unFollowAction } from '../../redux/reduserUsers';
 import Users from './Users';
 
 // const MyPostsContainer = () => {
@@ -27,10 +27,9 @@ import Users from './Users';
 //     );
 // }
 
-
 let mapStateToProps = (state) => {
     return {
-        stateU: state.usersPage
+        users: state.usersPage.users
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -43,6 +42,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         unFollow: (id) => {
             dispatch(unFollowAction(id));
+        },
+        setUsers: (users) => {
+            dispatch(setUsersAction(users));
         }
     }
 }
