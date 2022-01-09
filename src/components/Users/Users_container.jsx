@@ -5,8 +5,6 @@ import Users from './Users';
 
 // const MyPostsContainer = () => {
 
-
-
 //     return (
 //         <StoreContext.Consumer>  
 //             {(store) => {
