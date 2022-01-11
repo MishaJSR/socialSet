@@ -1,5 +1,5 @@
-.pole {
-  margin-bottom: 30px;
-  margin-top: 40px;
+.selected {
+  font-weight: bold;
+  font-size: 20px;
 }
 

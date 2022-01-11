@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { onFollowAction, onShowUsersAction, setUsersAction, unFollowAction } from '../../redux/reduserUsers';
+import { clickPageAction, onFollowAction, onShowUsersAction, setUsersAction, setUsersCountAction, unFollowAction } from '../../redux/reduserUsers';
 import Users from './Users';
-
 // const MyPostsContainer = () => {
 
 //     return (
@@ -27,7 +26,10 @@ import Users from './Users';
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -43,10 +45,15 @@ let mapDispatchToProps = (dispatch) => {
         },
         setUsers: (users) => {
             dispatch(setUsersAction(users));
+        },
+        clickPage: (page) => {
+            dispatch(clickPageAction(page));
+        },
+        setCountUsers: (count) => {
+            dispatch(setUsersCountAction(count));
         }
     }
 }
-
 const MyUsersContainer = connect (mapStateToProps, mapDispatchToProps) (Users);
 
 export default MyUsersContainer;
