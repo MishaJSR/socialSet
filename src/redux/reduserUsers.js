@@ -4,13 +4,18 @@ const SHOWUSERS = 'SHOWUSERS';
 const SETUSERS = 'SETUSERS';
 const CLICKPAGE = 'CLICKPAGE';
 const SETUSERSCOUNT = 'SETUSERSCOUNT';
+const SWAPSLICEP = 'SWAPSLICEP';
+const SWAPSLICEM = 'SWAPSLICEM';
 
 let initialState = {
   users: [
   ],
   pageSize: 5,
   totalUsersCount: 20,
-  currentPage: 1
+  currentPage: 1,
+  startPage: 0,
+  endPage: 10,
+  reversBut: false
 }
 
 const reducerUsers = (state = initialState, action) => {
@@ -19,6 +24,32 @@ const reducerUsers = (state = initialState, action) => {
       return {
         ...state,
         currentPage: action.page
+      };
+    }
+    case SWAPSLICEP: {
+      let newstart = state.startPage + 10;
+      let newend = state.endPage + 10;
+      return {
+        ...state,
+        startPage: newstart,
+        endPage: newend,
+        reversBut: true
+      };
+    }
+    case SWAPSLICEM: {
+      let newstart = state.startPage - 10;
+      let newend = state.endPage - 10;
+       if (newstart === 0) {
+        return {
+          ...state,
+          startPage: newstart,
+          endPage: newend,
+          reversBut: false
+        }
+       } else return {
+        ...state,
+        startPage: newstart,
+        endPage: newend
       };
     }
     case SETUSERSCOUNT: {
@@ -89,6 +120,12 @@ export let clickPageAction = (page) => {
 
 export let setUsersCountAction = (count) => {
   return { type: SETUSERSCOUNT, count: count };
+}
+export let onSwapSliceP = () => {
+  return { type: SWAPSLICEP };
+}
+export let onSwapSliceM = () => {
+  return { type: SWAPSLICEM };
 }
 
 

@@ -37,23 +37,29 @@ class Users extends React.Component {
     let pages = [];
     let piece = [];
     let newBut = [] ;
+    let flagBut = [];
+    if (this.props.reversBut) flagBut = [1];
+    debugger
 
     for (let i=1; i < pagesCount+1; i++){
       pages.push(i);
     }
 
-    if (pages.length > 10) {
-      for (let n = 0; n < 10; n++){
-          piece = pages.slice(0, 10);
+    if (this.props.totalUsersCount > this.props.endPage) {
+          piece = pages.slice(this.props.startPage, this.props.endPage);
           newBut = [1];
       }
-    } else {
-      piece = pages;
+     else {
+      piece = pages.slice(this.props.startPage, this.props.totalUsersCount);;
     }
-debugger
+
     return (
       <div>
         <div>
+          {flagBut.map(Elem =>
+            <button onClick={() => this.props.swapSlice(false)}>...</button>)
+          }
+          
            {
               piece.map(Elem =>
                 <button onClick={() => {this.swapPage(Elem);}}
@@ -61,7 +67,7 @@ debugger
                 )
             
             }
-            {newBut.map(Elem =>  <button>...</button>)}
+            {newBut.map(Elem =>  <button onClick={() => this.props.swapSlice(true)}>...</button>)}
           
         </div>
         {

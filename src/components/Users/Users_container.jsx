@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { clickPageAction, onFollowAction, onShowUsersAction, setUsersAction, setUsersCountAction, unFollowAction } from '../../redux/reduserUsers';
+import { clickPageAction, onFollowAction, onShowUsersAction, onSwapSliceM, onSwapSliceP, setUsersAction, setUsersCountAction, unFollowAction } from '../../redux/reduserUsers';
 import Users from './Users';
 // const MyPostsContainer = () => {
 
@@ -29,7 +29,10 @@ let mapStateToProps = (state) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        startPage: state.usersPage.startPage,
+        endPage: state.usersPage.endPage,
+        reversBut: state.usersPage.reversBut
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -51,6 +54,10 @@ let mapDispatchToProps = (dispatch) => {
         },
         setCountUsers: (count) => {
             dispatch(setUsersCountAction(count));
+        },
+        swapSlice: (flag) => {
+            if (flag) dispatch(onSwapSliceP()) 
+            else dispatch(onSwapSliceM())
         }
     }
 }
