@@ -28,29 +28,41 @@ class Users extends React.Component {
     .then(response => this.props.setUsers(response.data.items));
   }
 
+
+
   render() {
 
     let pagesCount = this.props.totalUsersCount / this.props.pageSize;
 
     let pages = [];
+    let piece = [];
+    let newBut = [] ;
 
     for (let i=1; i < pagesCount+1; i++){
       pages.push(i);
     }
 
+    if (pages.length > 10) {
+      for (let n = 0; n < 10; n++){
+          piece = pages.slice(0, 10);
+          newBut = [1];
+      }
+    } else {
+      piece = pages;
+    }
+debugger
     return (
       <div>
         <div>
-          {pages.map(Elem =>
-            <button onClick={() => {this.swapPage(Elem);}}
-             className={(this.props.currentPage === Elem)? classes.selected : ""}>{Elem}</button>
-            )
+           {
+              piece.map(Elem =>
+                <button onClick={() => {this.swapPage(Elem);}}
+                 className={(this.props.currentPage === Elem)? classes.selected : ""}>{Elem}</button>
+                )
+            
             }
-          {/* <button className={classes.selected} >1</button>
-          <button >2</button>
-          <button >3</button>
-          <button >4</button>
-          <button >5</button> */}
+            {newBut.map(Elem =>  <button>...</button>)}
+          
         </div>
         {
           this.props.users.map(uElement =>
