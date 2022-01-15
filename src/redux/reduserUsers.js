@@ -6,6 +6,7 @@ const CLICKPAGE = 'CLICKPAGE';
 const SETUSERSCOUNT = 'SETUSERSCOUNT';
 const SWAPSLICEP = 'SWAPSLICEP';
 const SWAPSLICEM = 'SWAPSLICEM';
+const ISFATCH = 'ISFATCH';
 
 let initialState = {
   users: [
@@ -15,7 +16,8 @@ let initialState = {
   currentPage: 1,
   startPage: 0,
   endPage: 10,
-  reversBut: false
+  isReversBut: false,
+  isFething: false
 }
 
 const reducerUsers = (state = initialState, action) => {
@@ -25,6 +27,12 @@ const reducerUsers = (state = initialState, action) => {
         ...state,
         currentPage: action.page
       };
+    }
+    case ISFATCH: {
+        return {
+          ...state,
+          isFething: action.flag
+        };
     }
     case SWAPSLICEP: {
       let newstart = state.startPage + 10;
@@ -126,6 +134,9 @@ export let onSwapSliceP = () => {
 }
 export let onSwapSliceM = () => {
   return { type: SWAPSLICEM };
+}
+export let isFethingAction = (flag) => {
+  return { type: ISFATCH, flag: flag  };
 }
 
 

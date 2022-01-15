@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { clickPageAction, onFollowAction, onShowUsersAction, onSwapSliceM, onSwapSliceP, setUsersAction, setUsersCountAction, unFollowAction } from '../../redux/reduserUsers';
-import Users from './Users';
+import { clickPageAction, isFethingAction, onFollowAction, onShowUsersAction, onSwapSliceM, onSwapSliceP, setUsersAction, setUsersCountAction, unFollowAction } from '../../redux/reduserUsers';
+import UsersAPI from './UsersAPI';
+
 // const MyPostsContainer = () => {
 
 //     return (
@@ -32,7 +33,8 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         startPage: state.usersPage.startPage,
         endPage: state.usersPage.endPage,
-        reversBut: state.usersPage.reversBut
+        isReversBut: state.usersPage.reversBut,
+        isFething: state.usersPage.isFething
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -58,9 +60,12 @@ let mapDispatchToProps = (dispatch) => {
         swapSlice: (flag) => {
             if (flag) dispatch(onSwapSliceP()) 
             else dispatch(onSwapSliceM())
+        },
+        isFethingBut: (flag) => {
+            dispatch(isFethingAction(flag));
         }
     }
 }
-const MyUsersContainer = connect (mapStateToProps, mapDispatchToProps) (Users);
+const MyUsersContainer = connect (mapStateToProps, mapDispatchToProps) (UsersAPI);
 
 export default MyUsersContainer;
