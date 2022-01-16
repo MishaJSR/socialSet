@@ -25,6 +25,7 @@ const Users = (props) => {
 
       return (
       <div>
+        <div>комит</div>
         <div>
           {flagBut.map(Elem =>
             <button onClick={() => props.swapS(false)}>...</button>)
