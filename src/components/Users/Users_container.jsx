@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { clickPageAction, isFethingAction, onFollowAction, onShowUsersAction, onSwapSliceM, onSwapSliceP, setUsersAction, setUsersCountAction, unFollowAction } from '../../redux/reduserUsers';
+import { clickPage, isFethingBut, onFollow, unFollow, onShowUsers, swapSlice, setUsers, setCountUsers } from '../../redux/reduserUsers';
 import UsersAPI from './UsersAPI';
 
 // const MyPostsContainer = () => {
@@ -37,35 +37,43 @@ let mapStateToProps = (state) => {
         isFething: state.usersPage.isFething
     }
 }
-let mapDispatchToProps = (dispatch) => {
-    return {
-        onShowUsers: () => {
-            dispatch(onShowUsersAction());
-        },
-        onFollow: (id) => {
-            dispatch(onFollowAction(id));
-        },
-        unFollow: (id) => {
-            dispatch(unFollowAction(id));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAction(users));
-        },
-        clickPage: (page) => {
-            dispatch(clickPageAction(page));
-        },
-        setCountUsers: (count) => {
-            dispatch(setUsersCountAction(count));
-        },
-        swapSlice: (flag) => {
-            if (flag) dispatch(onSwapSliceP()) 
-            else dispatch(onSwapSliceM())
-        },
-        isFethingBut: (flag) => {
-            dispatch(isFethingAction(flag));
-        }
-    }
-}
-const MyUsersContainer = connect (mapStateToProps, mapDispatchToProps) (UsersAPI);
+
+// let mapDispatchToProps = (dispatch) => {
+    
+//     return {
+//         onShowUsers: () => {
+//             dispatch(onShowUsersAction());
+//         },
+//         onFollow: (id) => {
+//             dispatch(onFollowAction(id));
+//         },
+//         unFollow: (id) => {
+//             dispatch(unFollowAction(id));
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAction(users));
+//         },
+//         clickPage: (page) => {
+//             dispatch(clickPageAction(page));
+//         },
+//         setCountUsers: (count) => {
+//             dispatch(setUsersCountAction(count));
+//         },
+//         swapSlice: (flag) => {
+//             if (flag) dispatch(onSwapSliceP()) 
+//             else dispatch(onSwapSliceM())
+//         },
+//         isFethingBut: (flag) => {
+//             dispatch(isFethingAction(flag));
+//         }
+//     }
+// }
+
+
+
+const MyUsersContainer = connect (mapStateToProps, 
+    {   onShowUsers, onFollow, unFollow,
+        setUsers, clickPage, setCountUsers,
+        swapSlice, isFethingBut}) (UsersAPI);
 
 export default MyUsersContainer;

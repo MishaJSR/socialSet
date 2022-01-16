@@ -108,34 +108,29 @@ const reducerUsers = (state = initialState, action) => {
 }
 
 
-export let onShowUsersAction = () => {
+export let onShowUsers = () => {
   return { type: SHOWUSERS };
 }
-
-export let onFollowAction = (id) => {
+export let onFollow = (id) => {
   return { type: FOLLOW, userId: id };
 }
-
-export let unFollowAction = (id) => {
+export let unFollow = (id) => {
   return { type: UNFOLLOW, userId: id };
 }
-export let setUsersAction = (users) => {
+export let setUsers = (users) => {
   return { type: SETUSERS, users: users };
 }
-export let clickPageAction = (page) => {
+export let clickPage = (page) => {
   return { type: CLICKPAGE, page: page };
 }
-
-export let setUsersCountAction = (count) => {
+export let setCountUsers = (count) => {
   return { type: SETUSERSCOUNT, count: count };
 }
-export let onSwapSliceP = () => {
-  return { type: SWAPSLICEP };
+export let swapSlice = (flag) => {
+  if (flag) return { type: SWAPSLICEP} 
+  else return { type: SWAPSLICEM }
 }
-export let onSwapSliceM = () => {
-  return { type: SWAPSLICEM };
-}
-export let isFethingAction = (flag) => {
+export let isFethingBut = (flag) => {
   return { type: ISFATCH, flag: flag  };
 }
 
