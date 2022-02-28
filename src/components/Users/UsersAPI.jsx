@@ -3,6 +3,8 @@ import React from 'react';
 import Preloader from './Preloader/Preloader';
 import Users from './Users';
 import classes from './Users.module.css';
+import { clickPage, isFethingBut, onFollow, unFollow, onShowUsers, swapSlice, setUsers, setCountUsers } from '../../redux/reduserUsers';
+import { connect } from 'react-redux';
 
 class UsersAPI extends React.Component {
 
@@ -19,11 +21,6 @@ class UsersAPI extends React.Component {
         });
     }
   }
-
-  // dAjax () {
-  //   axios.get("https://social-network.samuraijs.com/api/1.0/users?count=20" + "&page=" + this.props.pageSize)
-  //   .then(response => this.props.setUsers(response.data.items));
-  // }
 
   swapPage = (E) => {
     this.props.clickPage(E);
@@ -58,7 +55,20 @@ class UsersAPI extends React.Component {
   }
 }
 
+let mapStateToProps = (state) => {
+  return {
+      users: state.usersPage.users,
+      pageSize: state.usersPage.pageSize,
+      totalUsersCount: state.usersPage.totalUsersCount,
+      currentPage: state.usersPage.currentPage,
+      startPage: state.usersPage.startPage,
+      endPage: state.usersPage.endPage,
+      isReversBut: state.usersPage.reversBut,
+      isFething: state.usersPage.isFething
+  }
+}
 
-
-
-export default UsersAPI;
+export default connect (mapStateToProps, 
+  {   onShowUsers, onFollow, unFollow,
+      setUsers, clickPage, setCountUsers,
+      swapSlice, isFethingBut}) (UsersAPI);;

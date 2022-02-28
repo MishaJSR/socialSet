@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const AREA_CHANGE = 'AREA-CHANGE';
+const SET_USER_DATA = 'SET_USER_DATA';
+
 
 
 // let initialState = {}
@@ -10,6 +12,7 @@ let initialState = {
     { id: 3, content: "I am Andy", likes_count: 422 },
     { id: 4, content: "I am Peter", likes_count: 162 }
   ],
+  userData: null,
   newPostText: 'Hello, User'
 };
 
@@ -28,6 +31,13 @@ const reduserProfile = (state = initialState, action) => {
       return {
         ...state,
         newPostText: action.text
+      };
+    }
+    case SET_USER_DATA: {
+    
+      return {
+        ...state,
+        userData: action.userData
       };
     }
     default:
@@ -59,6 +69,11 @@ export let addPostAction = () => {
 
 export let onPostChangeAction = (text) => {
   return { type: AREA_CHANGE, text: text };
+}
+
+export let setUserData = (userData) => {
+  debugger
+  return { type: SET_USER_DATA, userData };
 }
 
 export default reduserProfile;
