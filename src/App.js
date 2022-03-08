@@ -6,16 +6,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersAPI from './components/Users/UsersAPI';
+import HeaderContainer from './components/Header/HeaderContainer';
 function App (props) {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
-        <Header />
+        <HeaderContainer/>
         <Navbar />
 
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path="frofile/*" element={<ProfileContainer />} />
+            <Route path="frofile/:userId" element={<ProfileContainer />} />
             <Route path="dialogs/*" element={<DialogsContainer/>} />
             <Route path="users/*" element={<UsersAPI/>} />
           </Routes>
