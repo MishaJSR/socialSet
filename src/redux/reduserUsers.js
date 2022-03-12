@@ -20,7 +20,8 @@ let initialState = {
   endPage: 10,
   isReversBut: false,
   isFething: false,
-  isToggleBut: false
+  isToggleBut: false,
+  isToggleFollowId: null
 }
 
 const reducerUsers = (state = initialState, action) => {
@@ -40,7 +41,8 @@ const reducerUsers = (state = initialState, action) => {
     case IS_TOGGLE_BUTTON: {
       return {
         ...state,
-        isToggleBut: action.flag
+        isToggleBut: action.flag,
+        isToggleFollowId: action.id
       };
   }
     case SWAPSLICEP: {
@@ -142,8 +144,8 @@ export let swapSlice = (flag) => {
 export let isFethingBut = (flag) => {
   return { type: ISFATCH, flag: flag  };
 }
-export let isToggleButton = (flag) => {
-  return { type: IS_TOGGLE_BUTTON, flag: flag  };
+export let isToggleButton = (flag, id) => {
+  return { type: IS_TOGGLE_BUTTON, flag: flag, id: id};
 }
 
 

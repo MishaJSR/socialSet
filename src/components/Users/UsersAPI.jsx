@@ -34,7 +34,7 @@ class UsersAPI extends React.Component {
   }
 
     onFollowBut = (id) => {
-      this.props.isToggleButton(true)
+      this.props.isToggleButton(true, id)
       onFollowAxi(id).then(response => {
         if (response.data.resultCode == 0)this.props.onFollow(id);
         this.props.isToggleButton(false)
@@ -42,10 +42,10 @@ class UsersAPI extends React.Component {
     }
 
     unFollowBut = (id) => {
-      this.props.isToggleButton(true)
+      this.props.isToggleButton(true, id)
       unFollowAxi(id).then(response => {
           if (response.data.resultCode == 0)this.props.unFollow(id)
-          this.props.isToggleButton(false)
+          this.props.isToggleButton(false, null)
       })
     }
 
@@ -68,6 +68,7 @@ class UsersAPI extends React.Component {
       usr={this.props.users}
       isF={this.props.isFething}
       isT={this.props.isToggleBut}
+      isTID={this.props.isToggleFollowId}
     />;
     </>
   }
@@ -83,7 +84,8 @@ let mapStateToProps = (state) => {
       endPage: state.usersPage.endPage,
       isReversBut: state.usersPage.reversBut,
       isFething: state.usersPage.isFething,
-      isToggleBut: state.usersPage.isToggleBut
+      isToggleBut: state.usersPage.isToggleBut,
+      isToggleFollowId: state.usersPage.isToggleFollowId
   }
 }
 
