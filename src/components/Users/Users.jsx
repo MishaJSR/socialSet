@@ -52,8 +52,8 @@ const Users = (props) => {
               </div>
               <div>
                 {uElement.followed ?
-                  <button onClick={() => props.unF(uElement.id)}>Unfollow</button> :
-                  <button onClick={() => props.onF(uElement.id)}>Follow</button>}
+                  <button disabled={props.isT} onClick={() => props.unF(uElement.id)}>Unfollow</button> :
+                  <button disabled={props.isT} onClick={() => props.onF(uElement.id)}>Follow</button>}
               </div>
             </span>
 

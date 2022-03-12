@@ -7,6 +7,8 @@ const SETUSERSCOUNT = 'SETUSERSCOUNT';
 const SWAPSLICEP = 'SWAPSLICEP';
 const SWAPSLICEM = 'SWAPSLICEM';
 const ISFATCH = 'ISFATCH';
+const IS_TOGGLE_BUTTON = 'IS_TOGGLE_BUTTON';
+
 
 let initialState = {
   users: [
@@ -17,7 +19,8 @@ let initialState = {
   startPage: 0,
   endPage: 10,
   isReversBut: false,
-  isFething: false
+  isFething: false,
+  isToggleBut: false
 }
 
 const reducerUsers = (state = initialState, action) => {
@@ -34,6 +37,12 @@ const reducerUsers = (state = initialState, action) => {
           isFething: action.flag
         };
     }
+    case IS_TOGGLE_BUTTON: {
+      return {
+        ...state,
+        isToggleBut: action.flag
+      };
+  }
     case SWAPSLICEP: {
       let newstart = state.startPage + 10;
       let newend = state.endPage + 10;
@@ -132,6 +141,9 @@ export let swapSlice = (flag) => {
 }
 export let isFethingBut = (flag) => {
   return { type: ISFATCH, flag: flag  };
+}
+export let isToggleButton = (flag) => {
+  return { type: IS_TOGGLE_BUTTON, flag: flag  };
 }
 
 
