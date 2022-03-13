@@ -3,9 +3,8 @@ import React from 'react';
 import Preloader from './Preloader/Preloader';
 import Users from './Users';
 import classes from './Users.module.css';
-import { clickPage, isFethingBut, onFollow, unFollow, onShowUsers, swapSlice, setUsers, setCountUsers, isToggleButton, getUserThunk, swapPageThunk, onFollowThunk, unFollowThunk } from '../../redux/reduserUsers';
+import { clickPage, isFethingBut, onFollow, unFollow, onShowUsers, swapSlice, setUsers, setCountUsers, isToggleButton, getUserThunk, swapPageThunk, onFollowThunk} from '../../redux/reduserUsers';
 import { connect } from 'react-redux';
-import { getUserAxi, onFollowAxi, unFollowAxi } from '../../scripts/auth';
 
 
 class UsersAPI extends React.Component {
@@ -19,13 +18,11 @@ class UsersAPI extends React.Component {
     this.props.swapPageThunk(this.props.pageSize, currentPage)
   }
 
-  onFollowBut = (id) => {
-    this.props.onFollowThunk(id)
+  onFollowBut = (id, flag) => {
+    this.props.onFollowThunk(id, flag)
     }
 
-  unFollowBut = (id) => {
-    this.props.unFollowThunk(id)
-    }
+
 
   render() {
     return <>
@@ -39,7 +36,6 @@ class UsersAPI extends React.Component {
       swapS={this.props.swapSlice}
       swP={this.swapPage}
       curP={this.props.currentPage}
-      unF={this.unFollowBut}
       onF={this.onFollowBut}
       usr={this.props.users}
       isF={this.props.isFething}
@@ -66,8 +62,4 @@ let mapStateToProps = (state) => {
 }
 
 export default connect (mapStateToProps, 
-  {   onShowUsers, onFollow, unFollow,
-      setUsers, clickPage, setCountUsers,
-      swapSlice, isFethingBut, isToggleButton,
-      getUserThunk, swapPageThunk, onFollowThunk,
-      unFollowThunk}) (UsersAPI);;
+  { swapSlice, getUserThunk, swapPageThunk, onFollowThunk}) (UsersAPI);;

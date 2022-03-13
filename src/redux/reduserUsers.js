@@ -123,8 +123,11 @@ const reducerUsers = (state = initialState, action) => {
 export let onShowUsers = () => {
   return { type: SHOWUSERS };
 }
-export let onFollow = (id) => {
-  return { type: FOLLOW, userId: id };
+export let onFollow = (id, flag) => {
+  if (flag)
+  return { type: FOLLOW, userId: id } 
+  else return { type: UNFOLLOW, userId: id }
+
 }
 export let unFollow = (id) => {
   return { type: UNFOLLOW, userId: id };
@@ -173,25 +176,16 @@ export const swapPageThunk = (pageSize, currentPage) => {
   }
 }
 
-export const onFollowThunk = (id) => {
+export const onFollowThunk = (id, flag) => {
   return (dispatch) => {
     dispatch(isToggleButton(true, id));
-    onFollowAxi(id).then(response => {
-      if (response.data.resultCode === 0) dispatch(onFollow(id));
+    onFollowAxi(id, flag).then(response => {
+      if (response.data.resultCode === 0) dispatch(onFollow(id, flag));
       dispatch(isToggleButton(false, null));
   })
   }
 }
 
-export const unFollowThunk = (id) => {
-  return (dispatch) => {
-    dispatch(isToggleButton(true, id));
-    unFollowAxi(id).then(response => {
-      if (response.data.resultCode === 0) dispatch(unFollow(id));
-      dispatch(isToggleButton(false, null));
-  })
-  }
-}
 
 
 export default reducerUsers;
