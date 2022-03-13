@@ -3,55 +3,31 @@ import React from 'react';
 import Preloader from './Preloader/Preloader';
 import Users from './Users';
 import classes from './Users.module.css';
-import { clickPage, isFethingBut, onFollow, unFollow, onShowUsers, swapSlice, setUsers, setCountUsers, isToggleButton } from '../../redux/reduserUsers';
+import { clickPage, isFethingBut, onFollow, unFollow, onShowUsers, swapSlice, setUsers, setCountUsers, isToggleButton, getUserThunk, swapPageThunk, onFollowThunk, unFollowThunk } from '../../redux/reduserUsers';
 import { connect } from 'react-redux';
 import { getUserAxi, onFollowAxi, unFollowAxi } from '../../scripts/auth';
 
+
 class UsersAPI extends React.Component {
-
-
   componentDidMount() {
     if (this.props.users.length === 0) {
-      this.props.isFethingBut(true);
-
-      getUserAxi(this.props.pageSize, this.props.currentPage)
-        .then(response => {
-          this.props.isFethingBut(false);
-          this.props.setUsers(response.data.items);
-          this.props.setCountUsers(response.data.totalCount)
-        });
+      this.props.getUserThunk(this.props.pageSize, this.props.currentPage)
     }
   }
 
-  swapPage = (E) => {
-    this.props.clickPage(E);
-    this.props.isFethingBut(true);
-    getUserAxi(this.props.pageSize, E)
-      .then(response => {
-        this.props.isFethingBut(false);
-        this.props.setUsers(response.data.items)
-      });
+  swapPage = (currentPage) => {
+    this.props.swapPageThunk(this.props.pageSize, currentPage)
   }
 
-    onFollowBut = (id) => {
-      this.props.isToggleButton(true, id)
-      onFollowAxi(id).then(response => {
-        if (response.data.resultCode == 0)this.props.onFollow(id);
-        this.props.isToggleButton(false)
-    })
+  onFollowBut = (id) => {
+    this.props.onFollowThunk(id)
     }
 
-    unFollowBut = (id) => {
-      this.props.isToggleButton(true, id)
-      unFollowAxi(id).then(response => {
-          if (response.data.resultCode == 0)this.props.unFollow(id)
-          this.props.isToggleButton(false, null)
-      })
+  unFollowBut = (id) => {
+    this.props.unFollowThunk(id)
     }
 
   render() {
-
-
     return <>
     {this.props.isFething ? <Preloader/> : null}
     <Users
@@ -92,4 +68,6 @@ let mapStateToProps = (state) => {
 export default connect (mapStateToProps, 
   {   onShowUsers, onFollow, unFollow,
       setUsers, clickPage, setCountUsers,
-      swapSlice, isFethingBut, isToggleButton}) (UsersAPI);;
+      swapSlice, isFethingBut, isToggleButton,
+      getUserThunk, swapPageThunk, onFollowThunk,
+      unFollowThunk}) (UsersAPI);;

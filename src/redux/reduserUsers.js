@@ -1,3 +1,5 @@
+import { getUserAxi, onFollowAxi, unFollowAxi } from "../scripts/auth";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SHOWUSERS = 'SHOWUSERS';
@@ -8,7 +10,6 @@ const SWAPSLICEP = 'SWAPSLICEP';
 const SWAPSLICEM = 'SWAPSLICEM';
 const ISFATCH = 'ISFATCH';
 const IS_TOGGLE_BUTTON = 'IS_TOGGLE_BUTTON';
-
 
 let initialState = {
   users: [
@@ -146,6 +147,50 @@ export let isFethingBut = (flag) => {
 }
 export let isToggleButton = (flag, id) => {
   return { type: IS_TOGGLE_BUTTON, flag: flag, id: id};
+}
+
+export const getUserThunk = (pageSize, currentPage) => {
+  return (dispatch) => {
+    dispatch(isFethingBut(true));
+    getUserAxi(pageSize, currentPage)
+    .then(response => {
+      dispatch(isFethingBut(false));
+      dispatch(setUsers(response.data.items));
+      dispatch(setCountUsers(response.data.totalCount));
+    });
+  }
+}
+
+export const swapPageThunk = (pageSize, currentPage) => {
+  return (dispatch) => {
+    dispatch(clickPage(currentPage));
+    dispatch(isFethingBut(true));
+    getUserAxi(pageSize, currentPage)
+      .then(response => {
+        dispatch(isFethingBut(false));
+        dispatch(setUsers(response.data.items));
+      });
+  }
+}
+
+export const onFollowThunk = (id) => {
+  return (dispatch) => {
+    dispatch(isToggleButton(true, id));
+    onFollowAxi(id).then(response => {
+      if (response.data.resultCode === 0) dispatch(onFollow(id));
+      dispatch(isToggleButton(false, null));
+  })
+  }
+}
+
+export const unFollowThunk = (id) => {
+  return (dispatch) => {
+    dispatch(isToggleButton(true, id));
+    unFollowAxi(id).then(response => {
+      if (response.data.resultCode === 0) dispatch(unFollow(id));
+      dispatch(isToggleButton(false, null));
+  })
+  }
 }
 
 
