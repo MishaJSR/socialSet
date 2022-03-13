@@ -52,3 +52,13 @@ export const getProfileAxi = (id) => {
         }
     )
 }
+
+
+export const getHeaderAxi = () => {
+    return instanse.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+    .then(
+        response => {
+            return response
+        }
+    )
+}

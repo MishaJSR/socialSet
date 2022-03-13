@@ -1,3 +1,5 @@
+import { getHeaderAxi } from "../scripts/auth";
+
 const SET_USERS_DATA = 'SET_USERS_DATA';
 const COMPLETED_AUTH = 'COMPLETED_AUTH';
 
@@ -39,12 +41,24 @@ const reduserAuth = (state = initialState, action) => {
 // }
 
 export let completedAuth = () => {
-  return { type: COMPLETED_AUTH};
+  return { type: COMPLETED_AUTH };
 }
 
 export let setUserAuthData = (userId, email, login) => {
   debugger
-  return { type: SET_USERS_DATA, userData: {userId,email, login} };
+  return { type: SET_USERS_DATA, userData: { userId, email, login } };
+}
+
+export const getHeaderThunk = () => {
+  return (dispatch) => {
+    getHeaderAxi()
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          dispatch(completedAuth());
+          dispatch(setUserAuthData(response.data.data.id, response.data.data.email, response.data.data.login))
+        }
+      });
+  }
 }
 
 export default reduserAuth;
