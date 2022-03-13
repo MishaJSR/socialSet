@@ -1,3 +1,5 @@
+import { getProfileAxi } from "../scripts/auth";
+
 const ADD_POST = 'ADD-POST';
 const AREA_CHANGE = 'AREA-CHANGE';
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -43,24 +45,7 @@ const reduserProfile = (state = initialState, action) => {
     default:
       return state;
   }
-  // if (action.type === ADD_POST) {
-  //     let NewPost = {
-  //       id: 5,
-  //       content: state.newPostText,
-  //       likes_count: 0
-  //     }
-  //     let stateCopy = {...state};
-  //     stateCopy.postData = [...state]
-  //     stateCopy.postData.push(NewPost);
-  //     stateCopy.newPostText = "";
-  //     return stateCopy;
-  //   } 
-  //   else if (action.type === AREA_CHANGE) {
-  //     let stateCopy = {...state};
-  //     stateCopy.newPostText = action.text;
-  //     return stateCopy;
-  //   } 
-  //   else return state;
+
 }
 
 export let addPostAction = () => {
@@ -74,6 +59,16 @@ export let onPostChangeAction = (text) => {
 export let setUserData = (userData) => {
   debugger
   return { type: SET_USER_DATA, userData };
+}
+
+export const getProfileThunk = (userId) => {
+  return (dispatch) => {
+    getProfileAxi(userId)
+    .then(response => {
+        debugger;
+        dispatch(setUserData(response.data));
+    });
+  }
 }
 
 export default reduserProfile;

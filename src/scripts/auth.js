@@ -43,3 +43,12 @@ export const onFollowAxi = (id, flag) => {
     )
         
 }
+
+export const getProfileAxi = (id) => {
+    return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
+    .then(
+        response => {
+            return response
+        }
+    )
+}

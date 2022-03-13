@@ -1,9 +1,8 @@
-import *  as axios from 'axios';
 import React from 'react';
 import Preloader from './Preloader/Preloader';
 import Users from './Users';
 import classes from './Users.module.css';
-import { clickPage, isFethingBut, onFollow, unFollow, onShowUsers, swapSlice, setUsers, setCountUsers, isToggleButton, getUserThunk, swapPageThunk, onFollowThunk} from '../../redux/reduserUsers';
+import { swapSlice, getUserThunk, swapPageThunk, onFollowThunk} from '../../redux/reduserUsers';
 import { connect } from 'react-redux';
 
 
