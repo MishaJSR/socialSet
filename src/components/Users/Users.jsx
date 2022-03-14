@@ -2,8 +2,10 @@ import React from 'react';
 import classes from './Users.module.css';
 import userphoto from '../Users/Preloader/userph.png'
 import { NavLink } from 'react-router-dom';
+import { Navigate } from 'react-router';
 
 const Users = (props) => {
+ 
 
   let pagesCount = props.totC / props.pZ;
   let pages = [];

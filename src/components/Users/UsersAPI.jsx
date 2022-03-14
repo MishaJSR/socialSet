@@ -4,7 +4,7 @@ import Users from './Users';
 import classes from './Users.module.css';
 import { swapSlice, getUserThunk, swapPageThunk, onFollowThunk} from '../../redux/reduserUsers';
 import { connect } from 'react-redux';
-
+import { Navigate } from 'react-router';
 
 class UsersAPI extends React.Component {
   componentDidMount() {
@@ -24,6 +24,9 @@ class UsersAPI extends React.Component {
 
 
   render() {
+
+    if (!this.props.isAuth) return  <Navigate to="/login" />
+    
     return <>
     {this.props.isFething ? <Preloader/> : null}
     <Users
@@ -56,7 +59,8 @@ let mapStateToProps = (state) => {
       isReversBut: state.usersPage.reversBut,
       isFething: state.usersPage.isFething,
       isToggleBut: state.usersPage.isToggleBut,
-      isToggleFollowId: state.usersPage.isToggleFollowId
+      isToggleFollowId: state.usersPage.isToggleFollowId,
+      isAuth: state.auth.isAuth
   }
 }
 

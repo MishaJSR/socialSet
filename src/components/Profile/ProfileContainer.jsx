@@ -1,26 +1,26 @@
 import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
-import { useMatch } from 'react-router';
+import { Navigate, useMatch } from 'react-router';
 import { getProfileThunk, setUserData } from '../../redux/reduserProfile';
 import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-
+        debugger;
         let userId = this.props.match.params.userId;
+        
 
         this.props.getProfileThunk(userId);
     
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-        // .then(response => {
-        //     debugger;
-        //   this.props.setUserData(response.data);
-        // });
     }
 
-    render() {
+    render() {  
+             
+        // if (!this.props.isAuth) return  <Navigate to="/login" />
+        
+
         return (
             <Profile {...this.props} userData={this.props.userData} />
         )
@@ -29,12 +29,14 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        userData: state.profilePage.userData
+        userData: state.profilePage.userData,
+        isAuth: state.auth.isAuth
     }
 }
 
 export const withRouter = (Component) =>{
     let RouterComponent = (props) => {
+        debugger
             const match = useMatch('/frofile/:userId/');
             return <Component {...props} match={match}/>;
     }

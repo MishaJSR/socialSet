@@ -8,7 +8,7 @@ const Header = (props) => {
             <img src='https://upload.wikimedia.org/wikipedia/commons/f/f4/BMW_logo_%28gray%29.svg'></img>
             
             <div className={classes.loginBlock}>
-            <NavLink to="/auth" >{props.userAuthData.isAuth? props.userAuthData.login : "Login please"}</NavLink>
+            <NavLink to="/login" >{props.userAuthData.isAuth? props.userAuthData.login : "Login please"}</NavLink>
             </div>
         </header>
         );    

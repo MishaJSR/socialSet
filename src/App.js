@@ -7,9 +7,10 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersAPI from './components/Users/UsersAPI';
 import HeaderContainer from './components/Header/HeaderContainer';
-function App (props) {
+import Login from './components/Login/Login';
+const App = (props) => {
   return (
-    <BrowserRouter>
+   
       <div className='app-wrapper'>
         <HeaderContainer/>
         <Navbar />
@@ -19,11 +20,12 @@ function App (props) {
             <Route path="frofile/:userId" element={<ProfileContainer />} />
             <Route path="dialogs/*" element={<DialogsContainer/>} />
             <Route path="users/*" element={<UsersAPI/>} />
+            <Route path="login/*" element={<Login/>} />
           </Routes>
         </div>
 
       </div>
-    </BrowserRouter>
+    
   );
 }
 

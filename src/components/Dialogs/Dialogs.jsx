@@ -3,8 +3,11 @@ import classes from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './Message/MessageItem'
+import { Navigate } from 'react-router';
 
 const Dialogs = (props) => {
+
+    if (!props.isAuth) return  <Navigate to="/login" />
 
     let textAreaText = React.createRef();
 
