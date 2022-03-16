@@ -6,7 +6,7 @@ import { Navigate } from 'react-router';
 
 
 const Profile = (props) => {
-  if (props.isAuth == false) return  <Navigate to="/login" />
+  
     return (
       <div>
       <ProfileInfo userData={props.userData}/>

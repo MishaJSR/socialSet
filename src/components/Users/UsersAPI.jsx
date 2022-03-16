@@ -5,6 +5,8 @@ import classes from './Users.module.css';
 import { swapSlice, getUserThunk, swapPageThunk, onFollowThunk} from '../../redux/reduserUsers';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router';
+import {IsAuthHoc} from '../../scripts/hocIsAuth'
+import { compose } from 'redux';
 
 class UsersAPI extends React.Component {
   componentDidMount() {
@@ -59,10 +61,11 @@ let mapStateToProps = (state) => {
       isReversBut: state.usersPage.reversBut,
       isFething: state.usersPage.isFething,
       isToggleBut: state.usersPage.isToggleBut,
-      isToggleFollowId: state.usersPage.isToggleFollowId,
-      isAuth: state.auth.isAuth
+      isToggleFollowId: state.usersPage.isToggleFollowId
   }
 }
 
-export default connect (mapStateToProps, 
-  { swapSlice, getUserThunk, swapPageThunk, onFollowThunk}) (UsersAPI);;
+export default compose(connect (mapStateToProps, { swapSlice, getUserThunk, swapPageThunk, onFollowThunk}),
+   IsAuthHoc) 
+   (UsersAPI)
+

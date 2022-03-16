@@ -3,25 +3,26 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { sendMessage, updateNewMessage } from '../../redux/reduserDialog';
 import Dialogs from './Dialogs';
+import { Navigate } from 'react-router';
+import { IsAuthHoc } from '../../scripts/hocIsAuth';
+import { compose } from 'redux';
 
+class DialogsContainer extends React.Component{
+    componentDidMount() {
+        
+    }
+
+    render(){
+        return <Dialogs {...this.props}/>
+    }
+}
 
 let mapStateToProps = (state) => {
     return {
-        state: state,
-        isAuth: state.auth.isAuth
-    }
-}
-let mapDispatchToProps = (dispatch) => {
-    return {
-        sendMessage: () => {
-            dispatch(sendMessage());
-        },
-        updateNewMessage: (text) => {
-            dispatch(updateNewMessage(text));
-        }
+        state: state
     }
 }
 
-const DialogsContainer = connect (mapStateToProps, mapDispatchToProps) (Dialogs);
-
-export default DialogsContainer;
+export default compose(connect (mapStateToProps, {sendMessage, updateNewMessage}),
+   IsAuthHoc) 
+   (DialogsContainer)
