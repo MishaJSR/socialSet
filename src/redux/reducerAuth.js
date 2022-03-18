@@ -45,7 +45,6 @@ export let completedAuth = () => {
 }
 
 export let setUserAuthData = (userId, email, login) => {
-  debugger
   return { type: SET_USERS_DATA, userData: { userId, email, login } };
 }
 

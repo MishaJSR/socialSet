@@ -62,3 +62,16 @@ export const getHeaderAxi = () => {
         }
     )
 }
+
+export const getStatusAxi = (id) => {
+    return instanse.get(`https://social-network.samuraijs.com/api/1.0/profile/status/${id}`)
+    .then(
+        response => {
+            if (response.data === null) {
+                let status = "Enter your status"
+                return status 
+            } else
+            return response.data
+        }
+    )
+}

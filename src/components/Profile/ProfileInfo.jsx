@@ -1,6 +1,7 @@
 import React from 'react';
 import Preloader from '../Users/Preloader/Preloader';
 import defaultImg from '../Users/Preloader/userph.png'
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     if (!props.userData){
@@ -17,6 +18,8 @@ const ProfileInfo = (props) => {
 
           
           {props.userData.fullName}
+          <div><ProfileStatus/></div>
+          
         </div>
         </div>
     );

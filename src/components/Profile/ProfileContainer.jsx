@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate, useMatch } from 'react-router';
 import { getProfileThunk, setUserData } from '../../redux/reduserProfile';
+import { getStatusAxi } from '../../scripts/auth';
 import { IsAuthHoc } from '../../scripts/hocIsAuth';
 import Profile from './Profile';
 
@@ -33,7 +34,6 @@ let mapStateToProps = (state) => {
 }
 
 export const withRouter = (Component) =>{
-    debugger
     let RouterComponent = (props) => {
         
             const match = useMatch('/frofile/:userId/');

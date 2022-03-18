@@ -57,7 +57,6 @@ export let onPostChangeAction = (text) => {
 }
 
 export let setUserData = (userData) => {
-  debugger
   return { type: SET_USER_DATA, userData };
 }
 
@@ -65,10 +64,10 @@ export const getProfileThunk = (userId) => {
   return (dispatch) => {
     getProfileAxi(userId)
     .then(response => {
-        debugger;
         dispatch(setUserData(response.data));
     });
   }
 }
+
 
 export default reduserProfile;

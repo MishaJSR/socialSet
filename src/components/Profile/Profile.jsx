@@ -6,6 +6,7 @@ import { Navigate } from 'react-router';
 
 
 const Profile = (props) => {
+    console.log(props)
   
     return (
       <div>
