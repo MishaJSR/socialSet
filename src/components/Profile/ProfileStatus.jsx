@@ -3,8 +3,7 @@ import React from 'react';
 class ProfileStatus extends React.Component {
 
     state = {
-        editMode: false,
-        status: 'Hello'
+        editMode: false
     }
 
     onToggleStatus (flag) {
@@ -26,14 +25,14 @@ class ProfileStatus extends React.Component {
                 {
                     !this.state.editMode &&
                     <div>
-                        <span onDoubleClick={() => this.onToggleStatus(true)}>{this.state.status}</span>
+                        <span onDoubleClick={() => this.onToggleStatus(true)}>{this.props.status}</span>
                     </div>
                 }
 
                 {
                     this.state.editMode &&
                     <div>
-                        <input autoFocus={true} onBlur={() => this.onToggleStatus(false)} value={this.state.status} />
+                        <input autoFocus={true} onBlur={() => this.onToggleStatus(false)} value={this.props.status} />
                     </div>
                 }
 

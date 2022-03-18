@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate, useMatch } from 'react-router';
-import { getProfileThunk, setUserData } from '../../redux/reduserProfile';
+import { getProfileThunk, setUserData, updateProfileStatusThunk } from '../../redux/reduserProfile';
 import { getStatusAxi } from '../../scripts/auth';
 import { IsAuthHoc } from '../../scripts/hocIsAuth';
 import Profile from './Profile';
@@ -10,7 +10,6 @@ import Profile from './Profile';
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        debugger;
         let userId = this.props.match.params.userId;
         
 
@@ -21,7 +20,7 @@ class ProfileContainer extends React.Component {
     render() {  
              
         return (
-            <Profile {...this.props} userData={this.props.userData} />
+            <Profile {...this.props} userData={this.props.userData} status={this.props.status} updateStatus={this.props.updateProfileStatusThunk}/>
         )
     }
 }
@@ -30,6 +29,7 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         userData: state.profilePage.userData,
+        status: state.profilePage.status
     }
 }
 
@@ -44,6 +44,5 @@ export const withRouter = (Component) =>{
 
 let withUrlProfile = withRouter(IsAuthHoc(ProfileContainer))
 
-export default connect (mapStateToProps, {setUserData, getProfileThunk}) (withUrlProfile)
-
+export default connect (mapStateToProps, {setUserData, getProfileThunk, updateProfileStatusThunk}) (withUrlProfile)
 

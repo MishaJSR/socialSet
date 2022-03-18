@@ -1,5 +1,7 @@
 import axios from "axios";
+
 const instanse = axios.create({
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
     headers: {
         "API-KEY": "ac7c18d7-dedc-4a3a-97e6-8ba2a87546b8"
@@ -9,7 +11,7 @@ const instanse = axios.create({
 )
 
 export const getUserAxi = (pageSize=10, currentPage=1) => {
-    return instanse.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
+    return instanse.get(`users?count=${pageSize}&page=${currentPage}`)
     .then(
         response => {
             return response
@@ -19,7 +21,7 @@ export const getUserAxi = (pageSize=10, currentPage=1) => {
 }
 
 export const unFollowAxi = (id) => {
-    return instanse.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+    return instanse.delete(`follow/${id}`)
     .then(
         response => {
             return response
@@ -29,13 +31,13 @@ export const unFollowAxi = (id) => {
 
 export const onFollowAxi = (id, flag) => {
     if (flag)
-    return instanse.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+    return instanse.post(`follow/${id}`)
     .then(
         response => {
             return response
         }
     ); 
-    else return instanse.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+    else return instanse.delete(`follow/${id}`)
     .then(
         response => {
             return response
@@ -45,7 +47,7 @@ export const onFollowAxi = (id, flag) => {
 }
 
 export const getProfileAxi = (id) => {
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
+    return instanse.get(`profile/${id}`)
     .then(
         response => {
             return response
@@ -55,7 +57,7 @@ export const getProfileAxi = (id) => {
 
 
 export const getHeaderAxi = () => {
-    return instanse.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+    return instanse.get(`auth/me`)
     .then(
         response => {
             return response
@@ -64,14 +66,23 @@ export const getHeaderAxi = () => {
 }
 
 export const getStatusAxi = (id) => {
-    return instanse.get(`https://social-network.samuraijs.com/api/1.0/profile/status/${id}`)
+    return instanse.get(`profile/status/${id}`)
+    .then(
+        response => {
+            return response
+        }
+    )
+}
+
+export const updateStatusAxi = (status) => {
+    return instanse.put(`profile/status`, {status: status})
     .then(
         response => {
             if (response.data === null) {
-                let status = "Enter your status"
+                let status = "No status"
                 return status 
             } else
-            return response.data
+            return response.statusText
         }
     )
 }

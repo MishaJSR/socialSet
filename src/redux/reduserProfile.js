@@ -1,8 +1,10 @@
-import { getProfileAxi } from "../scripts/auth";
+import { getProfileAxi, getStatusAxi, updateStatusAxi } from "../scripts/auth";
 
 const ADD_POST = 'ADD-POST';
 const AREA_CHANGE = 'AREA-CHANGE';
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_STATUS = 'SET_STATUS';
+
 
 
 
@@ -15,7 +17,8 @@ let initialState = {
     { id: 4, content: "I am Peter", likes_count: 162 }
   ],
   userData: null,
-  newPostText: 'Hello, User'
+  newPostText: 'Hello, User',
+  status: null
 };
 
 const reduserProfile = (state = initialState, action) => {
@@ -35,6 +38,12 @@ const reduserProfile = (state = initialState, action) => {
         newPostText: action.text
       };
     }
+    case SET_STATUS: {
+      return {
+        ...state,
+        status: action.status
+      };
+    }
     case SET_USER_DATA: {
     
       return {
@@ -52,6 +61,10 @@ export let addPostAction = () => {
   return { type: ADD_POST };
 }
 
+export let setStatusAction = (status) => {
+  return { type: SET_STATUS, status: status  };
+}
+
 export let onPostChangeAction = (text) => {
   return { type: AREA_CHANGE, text: text };
 }
@@ -65,6 +78,21 @@ export const getProfileThunk = (userId) => {
     getProfileAxi(userId)
     .then(response => {
         dispatch(setUserData(response.data));
+    });
+    getStatusAxi(userId)
+    .then(response => {
+      if (response.data === null) dispatch(setStatusAction("No status")) 
+      else dispatch(setStatusAction(response.data));
+    });
+  }
+}
+
+export const updateProfileStatusThunk = (status) => {
+  return (dispatch) => {
+    updateStatusAxi(status)
+    .then(response => {
+        if (response.data.resultCode === 1) alert('Dont put');
+        dispatch(setStatusAction(status));
     });
   }
 }

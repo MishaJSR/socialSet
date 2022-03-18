@@ -6,11 +6,10 @@ import { Navigate } from 'react-router';
 
 
 const Profile = (props) => {
-    console.log(props)
   
     return (
       <div>
-      <ProfileInfo userData={props.userData}/>
+      <ProfileInfo userData={props.userData} status={props.status} updateStatus={props.updateStatus}/>
       <MyPostsContainer store = {props.store}/>
       </div>
     );
